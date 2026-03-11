@@ -1,0 +1,11 @@
+{
+  "format": "markdown",
+  "staleDays": 30,
+  "issueSlaDays": 3,
+  "prSlaDays": 5,
+  "perPage": 100,
+  "maxPages": 3,
+  "repoLimit": 12,
+  "includeArchived": false,
+  "out": "maintainer-radar-report.md"
+}

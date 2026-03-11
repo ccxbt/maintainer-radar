@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "node ./bin/maintainer-radar.js",
-    "demo": "node ./bin/maintainer-radar.js repo openclaw/openclaw --format table --stale-days 30 --max-pages 2"
+    "demo": "node ./bin/maintainer-radar.js repo openclaw/openclaw --format table --stale-days 30 --max-pages 2",
+    "demo:org": "node ./bin/maintainer-radar.js org openclaw --repo-limit 5 --max-pages 2 --format table"
   },
   "keywords": [
     "github",

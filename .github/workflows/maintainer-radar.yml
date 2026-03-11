@@ -1,0 +1,43 @@
+name: maintainer-radar
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_repo:
+        description: "Repository to analyze (owner/name)"
+        required: false
+        default: "${{ github.repository }}"
+  schedule:
+    - cron: "0 8 * * 1"
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate report
+        run: |
+          TARGET="${{ github.event.inputs.target_repo }}"
+          if [ -z "$TARGET" ]; then
+            TARGET="${{ github.repository }}"
+          fi
+
+          node ./bin/maintainer-radar.js repo "$TARGET" \
+            --format markdown \
+            --out maintainer-radar.md \
+            --save-snapshot maintainer-radar-snapshot.json
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload report artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: maintainer-radar
+          path: |
+            maintainer-radar.md
+            maintainer-radar-snapshot.json
