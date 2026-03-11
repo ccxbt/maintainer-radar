@@ -1,0 +1,22 @@
+{
+  "name": "maintainer-radar",
+  "version": "1.0.0",
+  "description": "CLI to generate actionable GitHub OSS maintainer triage reports",
+  "type": "module",
+  "bin": {
+    "maintainer-radar": "./bin/maintainer-radar.js"
+  },
+  "scripts": {
+    "start": "node ./bin/maintainer-radar.js",
+    "demo": "node ./bin/maintainer-radar.js repo openclaw/openclaw --format table --stale-days 30 --max-pages 2"
+  },
+  "keywords": [
+    "github",
+    "oss",
+    "maintainer",
+    "triage",
+    "cli",
+    "reporting"
+  ],
+  "license": "MIT"
+}
